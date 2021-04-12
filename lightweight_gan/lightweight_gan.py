@@ -373,7 +373,7 @@ class ImageDataset(Dataset):
             self.paths = [
                 x.strip()
                 for x in open(self.folder_or_filelist)
-                if Path.is_file(x.strip())
+                if Path(x.strip()).is_file()
             ]
         assert (
             len(self.paths) > 0
