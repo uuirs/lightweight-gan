@@ -370,7 +370,11 @@ class ImageDataset(Dataset):
                 for p in Path(f"{folder_or_filelist}").glob(f"**/*.{ext}")
             ]
         else:
-            self.paths = [x.strip() for x in open(self.folder_or_filelist)]
+            self.paths = [
+                x.strip()
+                for x in open(self.folder_or_filelist)
+                if Path.is_file(x.strip())
+            ]
         assert (
             len(self.paths) > 0
         ), f"No images were found in {folder_or_filelist} for training"
